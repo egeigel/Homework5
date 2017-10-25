@@ -1,5 +1,7 @@
 package com.example.edward.homework5;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -15,20 +17,17 @@ import java.util.ArrayList;
  * Created by edward on 10/23/17.
  */
 
-public class GetEntriesAsync extends AsyncTask<String , Void , ArrayList<Entry>> {
+public class GetEntriesAsync extends AsyncTask<String, Void, ArrayList<Entry>> {
     ArrayList<Entry> entries;
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
+    MainActivity activity;
 
+    public GetEntriesAsync(MainActivity activity) {
+        this.activity = activity;
     }
 
     @Override
-    protected void onPostExecute(ArrayList<Entry> entries) {
-        super.onPostExecute(entries);
-        Log.d("demo" , entries.get(0).summary);
-        Log.d("demo" , entries.get(0).largeImage);
-        Log.d("demo" , entries.get(0).smallImage);
+    protected void onPreExecute() {
+        super.onPreExecute();
     }
 
     @Override
@@ -50,9 +49,12 @@ public class GetEntriesAsync extends AsyncTask<String , Void , ArrayList<Entry>>
         } catch (SAXException e) {
             e.printStackTrace();
         }
-
-
         return entries;
+    }
 
+    @Override
+    protected void onPostExecute(ArrayList<Entry> entries) {
+        super.onPostExecute(entries);
+        activity.setSources(entries);
     }
 }
