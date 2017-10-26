@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class FeedParser {
     public static class FeedSaxParser extends DefaultHandler{
+
         ArrayList<Entry> entries;
         Entry entry;
         StringBuilder innerXml;
@@ -25,7 +26,8 @@ public class FeedParser {
         int largestHeight;
 
         public static ArrayList<Entry> parseFeed(InputStream inputStream) throws IOException, SAXException {
-            FeedSaxParser feedSaxParser=new FeedSaxParser();
+            // stream of XML is pushed to program
+            FeedSaxParser feedSaxParser = new FeedSaxParser();
             Xml.parse(inputStream , Xml.Encoding.UTF_8 , feedSaxParser);
             return feedSaxParser.entries;
         }
@@ -33,11 +35,12 @@ public class FeedParser {
         @Override
         public void startDocument() throws SAXException {
             super.startDocument();
+            // when doc starts, initiate new list to store data
             entries = new ArrayList<>();
-            innerXml=new StringBuilder();
-            height=0;
-            smallestHeight=0;
-            largestHeight=0;
+            innerXml = new StringBuilder();
+            height = 0;
+            smallestHeight = 0;
+            largestHeight = 0;
         }
 
         @Override
@@ -49,66 +52,65 @@ public class FeedParser {
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
             super.startElement(uri, localName, qName, attributes);
             if (localName.equals("entry")){
+                // prepare to store entry item
                 entry = new Entry();
             }
 
             if(localName.equals("image")) {
                 if (entry != null) {
+                    // prepare to store image
                     height = Integer.valueOf(attributes.getValue("height"));
                     Log.d("demo", String.valueOf(height));
-
                 }
             }
-
-
         }
 
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
             super.endElement(uri, localName, qName);
             if(localName.equals("entry")){
+                // closing tag
+                // add entry to array list
                 entries.add(entry);
-                largestHeight=0;
-                smallestHeight=0;
+                largestHeight = 0;
+                smallestHeight = 0;
             }
             else if(localName.equals("title")){
                 if(entry!=null){
-                    entry.title = innerXml.toString();
+                    entry.setTitle(innerXml.toString());
                 }
             }
             else if(localName.equals("summary")) {
                 if (entry != null) {
-                    entry.summary = innerXml.toString();
+                    entry.setSummary(innerXml.toString());
 
                 }
             }
             else if(localName.equals("releaseDate")) {
                 if (entry != null) {
-                    entry.releaseDate = innerXml.toString();
-
+                    entry.setReleaseDate(innerXml.toString());
                 }
             }
             else if(localName.equals("image")) {
                 if(entry!=null) {
-                    if(entry.smallImage==null){
-                        entry.smallImage = innerXml.toString();
+                    if(entry.getSmallImage()==null){
+                        // if there is no image in the entry, store
+                        entry.setSmallImage(innerXml.toString());
+                        // set to pre-stored height
                         smallestHeight = height;
                         largestHeight = height;
                     }
                     else if (height < smallestHeight) {
-                        entry.smallImage = innerXml.toString();
-                        Log.d("demo" , String.valueOf(height)+" is the smallest");
+                        entry.setSmallImage(innerXml.toString());
+                        Log.d("demo" , String.valueOf(height) + " is the smallest");
                     }
                     else if (height > largestHeight) {
-                        entry.largeImage = innerXml.toString();
-                        Log.d("demo" , String.valueOf(height)+" is the largest");
+                        entry.setLargeImage(innerXml.toString());
+                        Log.d("demo" , String.valueOf(height) + " is the largest");
                     }
                 }
             }
-
             innerXml.setLength(0);
-
-
         }
 
         @Override
