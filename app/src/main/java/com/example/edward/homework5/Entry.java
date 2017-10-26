@@ -10,6 +10,7 @@ public class Entry implements Serializable {
     private String title;
     private String summary;
     private String releaseDate;
+    private String updatedDate;
     private String smallImage;
     private String largeImage;
 
@@ -33,9 +34,7 @@ public class Entry implements Serializable {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
+    public void setReleaseDate(String releaseDate) { this.releaseDate = releaseDate;}
 
     public String getSmallImage() {
         return smallImage;
@@ -52,4 +51,8 @@ public class Entry implements Serializable {
     public void setLargeImage(String largeImage) {
         this.largeImage = largeImage;
     }
+
+    public String getUpdatedDate() { return updatedDate;}
+
+    public void setUpdatedDate(String updatedDate) {this.updatedDate = updatedDate;}
 }

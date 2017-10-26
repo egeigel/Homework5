@@ -13,9 +13,10 @@
         android:id="@+id/titleView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="71dp"
-        android:text="titleView"
         android:layout_alignBottom="@+id/picture"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="14dp"
+        android:layout_toEndOf="@+id/picture"
+        android:text="titleView" />
 
 </RelativeLayout>
