@@ -42,7 +42,7 @@ public class PodcastAdapter extends ArrayAdapter<Entry> {
         }
         //set the data from the object
         viewHolder.tvTitle.setText(a.getTitle());
-        Picasso.with(context).load(a.getSmallImage()).into(viewHolder.imageView);
+        Picasso.with(context).load(a.getSmallImage().trim()).into(viewHolder.imageView);
         return convertView;
     }
 

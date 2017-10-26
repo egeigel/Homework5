@@ -2,8 +2,13 @@ package com.example.edward.homework5;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import it.sephiroth.android.library.picasso.Picasso;
 
@@ -30,9 +35,17 @@ public class DetailActivity extends AppCompatActivity {
 
         // update view
         title.setText(entry.getTitle());
-        // TODO: update entry object to include updated date & replace release date
-        updatedDate.setText(entry.getReleaseDate());
+        // TODO: update entry object to include updated date & use that date below
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(entry.getUpdatedDate().trim());
+            Log.d("debug", date.toString());
+            String formattedDate = new SimpleDateFormat("MM/dd/yyyy HH:mm aaa").format(date);
+            updatedDate.setText("Last Updated: " + formattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //updatedDate.setText(entry.getReleaseDate());
         summary.setText(entry.getSummary());
-        Picasso.with(this).load(entry.getLargeImage()).into(imageView);
+        Picasso.with(this).load(entry.getLargeImage().trim()).into(imageView);
     }
 }

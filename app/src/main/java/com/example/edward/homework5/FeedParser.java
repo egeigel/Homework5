@@ -91,6 +91,11 @@ public class FeedParser {
                     entry.setReleaseDate(innerXml.toString());
                 }
             }
+            else if(localName.equals("updated")) {
+                if (entry != null) {
+                    entry.setUpdatedDate(innerXml.toString());
+                }
+            }
             else if(localName.equals("image")) {
                 if(entry!=null) {
                     if(entry.getSmallImage()==null){
