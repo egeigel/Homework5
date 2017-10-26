@@ -33,6 +33,6 @@ public class DetailActivity extends AppCompatActivity {
         // TODO: update entry object to include updated date & replace release date
         updatedDate.setText(entry.getReleaseDate());
         summary.setText(entry.getSummary());
-        Picasso.with(this).load(entry.getLargeImage()).into(imageView);
+        Picasso.with(this).load(entry.getLargeImage().trim()).into(imageView);
     }
 }

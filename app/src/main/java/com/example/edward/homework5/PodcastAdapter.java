@@ -1,6 +1,7 @@
 package com.example.edward.homework5;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,9 +41,18 @@ public class PodcastAdapter extends ArrayAdapter<Entry> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
+        if(a.getTitle().contains(((MainActivity)context).searchBar.getText().toString())){
+            convertView.setBackgroundColor(Color.GREEN);
+        }
+        else{
+            convertView.setBackgroundColor(Color.WHITE);
+        }
+
         //set the data from the object
+        Log.d("demo" , a.getSmallImage());
         viewHolder.tvTitle.setText(a.getTitle());
-        Picasso.with(context).load(a.getSmallImage()).into(viewHolder.imageView);
+        Picasso.with(context).load(a.getSmallImage().trim()).into(viewHolder.imageView);
         return convertView;
     }
 
