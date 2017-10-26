@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Entry> entries;
     private ListView listView;
     private PodcastAdapter adapter;
+    public static final String ENTRY_OBJECT_KEY = "entry";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +57,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Entry s = sources.get(position);
-                // TODO: update intent
-                //Intent goToNews = new Intent(MainActivity.this, NewsActivity.class);
-                //goToNews.putExtra("source" , s);
-                //startActivity(goToNews);
+                Intent goToDetail = new Intent(MainActivity.this, DetailActivity.class);
+                goToDetail.putExtra(ENTRY_OBJECT_KEY, s);
+                startActivity(goToDetail);
             }
         });
 

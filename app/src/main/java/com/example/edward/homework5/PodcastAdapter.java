@@ -1,6 +1,7 @@
 package com.example.edward.homework5;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class PodcastAdapter extends ArrayAdapter<Entry> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        //set the data from the email object
+        //set the data from the object
         viewHolder.tvTitle.setText(a.getTitle());
         Picasso.with(context).load(a.getSmallImage()).into(viewHolder.imageView);
         return convertView;

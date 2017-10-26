@@ -89,7 +89,6 @@ public class FeedParser {
             else if(localName.equals("releaseDate")) {
                 if (entry != null) {
                     entry.setReleaseDate(innerXml.toString());
-
                 }
             }
             else if(localName.equals("image")) {

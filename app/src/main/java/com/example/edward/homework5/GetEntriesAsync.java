@@ -25,6 +25,7 @@ public class GetEntriesAsync extends AsyncTask<String, Void, ArrayList<Entry>> {
         this.activity = activity;
     }
 
+    //TODO: Set up progress dialog
     @Override
     protected void onPreExecute() {
         super.onPreExecute();

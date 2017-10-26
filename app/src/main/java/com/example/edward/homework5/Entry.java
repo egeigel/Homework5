@@ -1,10 +1,12 @@
 package com.example.edward.homework5;
 
+import java.io.Serializable;
+
 /**
  * Created by edward on 10/23/17.
  */
 
-public class Entry {
+public class Entry implements Serializable {
     private String title;
     private String summary;
     private String releaseDate;
@@ -35,7 +37,6 @@ public class Entry {
         this.releaseDate = releaseDate;
     }
 
-    // TODO: Return thumbnail?
     public String getSmallImage() {
         return smallImage;
     }
