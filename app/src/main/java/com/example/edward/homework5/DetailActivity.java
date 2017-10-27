@@ -38,7 +38,6 @@ public class DetailActivity extends AppCompatActivity {
         // TODO: update entry object to include updated date & use that date below
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(entry.getUpdatedDate().trim());
-            Log.d("debug", date.toString());
             String formattedDate = new SimpleDateFormat("MM/dd/yyyy HH:mm aaa").format(date);
             updatedDate.setText("Last Updated: " + formattedDate);
         } catch (ParseException e) {

@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -48,13 +49,11 @@ public class MainActivity extends AppCompatActivity {
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // TODO: point of this text?
                 searchBar.setText("Clear List Search");
                 adapter.notifyDataSetChanged();
             }
         });
-
-
-
 
         if(isConnected()) {
             try {
@@ -82,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     public void setSources(final ArrayList<Entry> sources){
         listView = (ListView) findViewById(R.id.listView);
         adapter = new PodcastAdapter(this, R.layout.list_item_layout2, sources);
+        adapter.sort(new DateComparator());
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -94,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        for(int i = 0; i < adapter.getCount()-1; i++){
+            Log.d("debug", adapter.getItem(i).getReleaseDate().toString());
+        }
     }
+
+
 
 }

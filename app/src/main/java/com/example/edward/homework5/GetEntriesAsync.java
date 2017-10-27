@@ -20,14 +20,18 @@ import java.util.ArrayList;
 public class GetEntriesAsync extends AsyncTask<String, Void, ArrayList<Entry>> {
     ArrayList<Entry> entries;
     MainActivity activity;
+    ProgressDialog pd;
 
     public GetEntriesAsync(MainActivity activity) {
         this.activity = activity;
+        this.pd = new ProgressDialog(activity);
     }
 
     //TODO: Set up progress dialog
     @Override
     protected void onPreExecute() {
+        pd.setMessage("Loading News...");
+        pd.show();
         super.onPreExecute();
     }
 
@@ -57,5 +61,9 @@ public class GetEntriesAsync extends AsyncTask<String, Void, ArrayList<Entry>> {
     protected void onPostExecute(ArrayList<Entry> entries) {
         super.onPostExecute(entries);
         activity.setSources(entries);
+        if (pd != null) {
+            // update activity
+            pd.dismiss();
+        }
     }
 }

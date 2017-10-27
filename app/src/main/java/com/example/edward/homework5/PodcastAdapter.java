@@ -45,7 +45,7 @@ public class PodcastAdapter extends ArrayAdapter<Entry> {
         if(a.getTitle().contains(((MainActivity)context).searchBar.getText().toString())){
             convertView.setBackgroundColor(Color.GREEN);
         }
-        else{
+        else {
             convertView.setBackgroundColor(Color.WHITE);
         }
 
