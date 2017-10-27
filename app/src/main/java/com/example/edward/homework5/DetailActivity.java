@@ -28,22 +28,15 @@ public class DetailActivity extends AppCompatActivity {
         // set entry object
         entry = (Entry) getIntent().getSerializableExtra(MainActivity.ENTRY_OBJECT_KEY);
 
-        imageView = (ImageView)findViewById(R.id.imageView);
-        summary = (TextView)findViewById(R.id.summaryContentView);
-        title = (TextView)findViewById(R.id.titleView);
-        updatedDate = (TextView)findViewById(R.id.updatedDateView);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        summary = (TextView) findViewById(R.id.summaryContentView);
+        title = (TextView) findViewById(R.id.titleView);
+        updatedDate = (TextView) findViewById(R.id.updatedDateView);
 
         // update view
         title.setText(entry.getTitle());
-        // TODO: update entry object to include updated date & use that date below
-        try {
-            Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(entry.getUpdatedDate().trim());
-            Log.d("debug", date.toString());
-            String formattedDate = new SimpleDateFormat("MM/dd/yyyy HH:mm aaa").format(date);
-            updatedDate.setText("Last Updated: " + formattedDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        String formattedDate = new SimpleDateFormat("MM/dd/yyyy HH:mm aaa").format(entry.getUpdatedDate());
+        updatedDate.setText("Last Updated: " + formattedDate);
         //updatedDate.setText(entry.getReleaseDate());
         summary.setText(entry.getSummary());
         Picasso.with(this).load(entry.getLargeImage().trim()).into(imageView);

@@ -3,4 +3,5 @@
     <string name="goText">GO</string>
     <string name="clearText">CLEAR</string>
     <string name="summaryView">Summary</string>
+    <string name="searchHint">Search...</string>
 </resources>
