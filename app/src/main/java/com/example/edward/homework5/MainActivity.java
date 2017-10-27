@@ -51,13 +51,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // TODO: point of this text?
                 searchBar.setText("Clear List Search");
+                adapter.sort(new DateComparator());
                 adapter.notifyDataSetChanged();
             }
         });
 
         if(isConnected()) {
             try {
-                entries = new GetEntriesAsync(this).execute("https://itunes.apple.com/us/rss/toppodcasts/limit=30/xml").get();
+                entries = new GetEntriesAsync(this).execute(
+                        "https://itunes.apple.com/us/rss/toppodcasts/limit=30/xml").get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -93,12 +95,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(goToDetail);
             }
         });
-
-        for(int i = 0; i < adapter.getCount()-1; i++){
-            Log.d("debug", adapter.getItem(i).getReleaseDate().toString());
-        }
     }
-
-
 
 }

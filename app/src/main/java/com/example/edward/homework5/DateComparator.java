@@ -15,16 +15,6 @@ public class DateComparator implements Comparator<Entry> {
 
     @Override
     public int compare(Entry entry, Entry t1) {
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-
-        try {
-            Date d = format.parse(entry.getReleaseDate().trim());
-            Date d1 = format.parse(t1.getReleaseDate().trim());
-            return d.compareTo(d1);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return 0;
+        return entry.getReleaseDate().compareTo(t1.getReleaseDate());
     }
 }
