@@ -41,16 +41,13 @@ public class PodcastAdapter extends ArrayAdapter<Entry> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
-        if(a.getTitle().contains(((MainActivity)context).searchBar.getText().toString())){
+        convertView.setBackgroundColor(Color.WHITE);
+        String tvs = ((MainActivity)context).searchBar.getText().toString().trim();
+        if(a.getTitle().contains(tvs) && !(tvs.isEmpty())) {
             convertView.setBackgroundColor(Color.GREEN);
-        }
-        else {
-            convertView.setBackgroundColor(Color.WHITE);
         }
 
         //set the data from the object
-        Log.d("demo" , a.getSmallImage());
         viewHolder.tvTitle.setText(a.getTitle());
         Picasso.with(context).load(a.getSmallImage().trim()).into(viewHolder.imageView);
         return convertView;
@@ -59,8 +56,6 @@ public class PodcastAdapter extends ArrayAdapter<Entry> {
     //View Holder to cache the views
     private static class ViewHolder{
         TextView tvTitle;
-        TextView tvDate;
-        TextView tvAuthor;
         ImageView imageView;
     }
 }

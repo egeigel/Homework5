@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         searchBar = (EditText)findViewById(R.id.searchBar);
         clearButton = (Button)findViewById(R.id.clearButton);
 
+        searchBar.setText(null);
+
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: point of this text?
-                searchBar.setText("Clear List Search");
+                searchBar.setText(null);
                 adapter.sort(new DateComparator());
                 adapter.notifyDataSetChanged();
             }

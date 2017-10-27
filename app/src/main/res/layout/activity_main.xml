@@ -17,7 +17,6 @@
         android:ems="10"
         android:hint="@string/searchHint"
         android:inputType="textPersonName"
-        android:text="Search List"
         app:layout_constraintBottom_toBottomOf="@+id/goButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/goButton"
